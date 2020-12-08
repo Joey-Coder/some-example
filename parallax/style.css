@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
+}
+
+html {
+  /* 隐藏最外层滚动条，禁止滚动 */
+  overflow: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
+  /* 开启3D空间，数值越小，效果越显著 */
+  perspective: 1px;
+  /* transform-style: preserve-3d; */
+}
+header {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  /* transform-style: inherit; */
+  transform-style: preserve-3d;
+  /* height: 100vh; */
+}
+
+header h1 {
+  background-color: rgba(0, 0, 0, 0.69);
+  color: #fff;
+  padding: 1em 4em;
+  font-size: 3em;
+}
+
+header::before {
+  content: "";
+  display: block;
+  background-image: url("./image/pexels-nubia-navarro-\(nubikini\)-386025.jpg");
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  /* 核心代码 */
+  transform: translateZ(-1px) scale(2);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: rgba(209, 218, 218, 1);
+}
+
+article {
+  width: 90vw;
+  max-width: 960px;
+  padding: 6em 0;
+  font-size: 18px;
+  /* 设置文字两侧对齐 */
+  text-align: justify;
+  letter-spacing: 0.075em;
+  text-indent: 2em;
+  line-height: 1.8em;
+}
+
+@media screen and (max-width: 1100px) {
+  header h1 {
+    font-size: 2.5em;
+    padding: 1em 1.5em;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  header h1 {
+    font-size: 1.5em;
+    padding: 1em;
+  }
+  article {
+    font-size: 1em;
+  }
+}
