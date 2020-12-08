@@ -10,7 +10,14 @@ var currentIndex = 0;
 nextEl.addEventListener("click", handleNextClicked);
 prevEl.addEventListener("click", handlePrevClicked);
 
+var a = null;
+// 设置自动播放
+if (autoPlay) {
+  a = setInterval(forwards ? handleNextClicked : handlePrevClicked, 5000);
+}
+
 function handleNextClicked() {
+  clearInterval(a);
   let current = slides[currentIndex];
   current.classList.remove("current");
   currentIndex++;
@@ -18,9 +25,11 @@ function handleNextClicked() {
     currentIndex = 0;
   }
   slides[currentIndex].classList.add("current");
+  a = setInterval(forwards ? handleNextClicked : handlePrevClicked, 5000);
 }
 
 function handlePrevClicked() {
+  clearInterval(a);
   let current = slides[currentIndex];
   current.classList.remove("current");
   currentIndex--;
@@ -28,9 +37,5 @@ function handlePrevClicked() {
     currentIndex = 3;
   }
   slides[currentIndex].classList.add("current");
-}
-
-// 设置自动播放
-if (autoPlay) {
-  setInterval(forwards ? handleNextClicked : handlePrevClicked, 5000);
+  a = setInterval(forwards ? handleNextClicked : handlePrevClicked, 5000);
 }

@@ -9,3 +9,7 @@
 ### carousel
 
     原生 js 实现轮播图
+
+### parallax
+
+    css实现视差
