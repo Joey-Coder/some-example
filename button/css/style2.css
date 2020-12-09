@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: #2f3542;
+}
+
+.button-wrapper {
+  position: relative;
+  width: 240px;
+  height: 60px;
+  text-align: center;
+}
+
+.rectangle {
+  stroke-width: 8;
+  stroke: skyblue;
+  stroke-dasharray: 100 500;
+  stroke-dashoffset: -374;
+}
+
+.btn {
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 6px;
+  position: relative;
+  top: -48px;
+}
+
+@keyframes extend {
+  to {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 0;
+    stroke-width: 2;
+  }
+}
+
+.button-wrapper:hover .rectangle {
+  animation: 0.5s extend linear forwards;
+}
