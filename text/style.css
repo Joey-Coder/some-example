@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
+}
+
+body {
+  background-color: #2f3542;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.logo_text {
+  font-size: 6em;
+  /* 文本是否填充 */
+  fill: none;
+  /* 描边颜色 */
+  stroke: url(#geekColor);
+  stroke-width: 1;
+  stroke-dasharray: 20 800;
+  stroke-dashoffset: 10;
+  animation: 5s linear 0s drawing forwards;
+}
+
+@keyframes drawing {
+  to {
+    stroke-dasharray: 800;
+    stroke-dashoffset: 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .logo_text {
+    font-size: 48px;
+  }
+}
