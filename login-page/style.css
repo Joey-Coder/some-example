@@ -108,6 +108,7 @@
   background-color: rgba(12, 80, 38, 0.67);
 }
 
+/* 添加鼠标覆盖时，按钮会闪动特效 */
 .login-form button::before,
 .login-form button::after {
   content: "";
