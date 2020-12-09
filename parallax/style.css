@@ -36,11 +36,14 @@ header h1 {
   font-size: 3em;
 }
 
+/* 图片背景的典型设置方法 */
 header::before {
   content: "";
   display: block;
   background-image: url("./image/pexels-nubia-navarro-\(nubikini\)-386025.jpg");
   background-size: cover;
+  /* 展示图片的具体位置 */
+  background-position: top center;
   position: absolute;
   left: 0;
   right: 0;
