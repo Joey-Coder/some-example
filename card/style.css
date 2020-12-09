@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
+}
+
+body {
+  background-color: #666;
+  min-width: 375px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 40px;
+}
+
+.row {
+  display: flex;
+}
+
+/* 核心代码 */
+.pro-card-wrapper {
+  perspective: 300px;
+}
+
+.pro-card {
+  width: 180px;
+  height: 180px;
+  margin: 4px;
+  font-size: 48px;
+  position: relative;
+  /* text-align: center; */
+  /* 翻转特效时间 */
+  transition: 0.8s;
+  /* 保留3d空间 */
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  /* 隐藏背面 */
+  backface-visibility: hidden;
+  border: 1px solid #d2dae2;
+  color: white;
+}
+
+/* 翻转卡片 */
+.back {
+  transform: rotateY(180deg);
+}
+
+.pro-card-wrapper:hover .pro-card {
+  transform: rotateY(180deg);
+}
