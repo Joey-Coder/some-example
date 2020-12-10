@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1e272e;
+}
+
+ul {
+  width: 50%;
+}
+
+li {
+  color: #d2dae2;
+  font-size: 18px;
+  margin: 48px 0;
+  position: relative;
+}
+
+li::before,
+li::after {
+  content: "";
+  display: block;
+  height: 16px;
+  width: 100%;
+  background-color: #1f4a59;
+  position: absolute;
+  bottom: -28px;
+  border-radius: 6px;
+}
+
+li::before {
+  box-shadow: 0 0 6px rgba(75, 207, 250, 0.2);
+}
+
+li::after {
+  /* 90deg代表水平方向渐变 */
+  background-image: linear-gradient(90deg, skyblue, #34e7e4);
+  /* 统一设置动画样式 */
+  animation: all 1.2s ease forwards;
+}
+
+/* 具体动画再指定动画名称 */
+.js::after {
+  animation-name: js;
+}
+
+.vue::after {
+  animation-name: vue;
+}
+.python::after {
+  animation-name: python;
+}
+.css3::after {
+  animation-name: css3;
+}
+.scrapy::after {
+  animation-name: scrapy;
+}
+@keyframes js {
+  from {
+    width: 0;
+  }
+  to {
+    width: 90%;
+  }
+}
+
+@keyframes vue {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%;
+  }
+}
+
+@keyframes python {
+  from {
+    width: 0;
+  }
+  to {
+    width: 70%;
+  }
+}
+
+@keyframes css3 {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60%;
+  }
+}
+
+@keyframes scrapy {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%;
+  }
+}
