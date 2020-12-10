@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  background-color: #1e272e;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+ul {
+  position: relative;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+ul li {
+  width: 120px;
+  line-height: 40px;
+  text-align: center;
+}
+
+ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.slider1 {
+  width: 100px;
+  height: 40px;
+  background-color: #5352ed;
+  border-radius: 4px;
+  /* 覆盖第一个li */
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  z-index: -1;
+  transition: all ease, 0.4s;
+}
+
+.slider2 {
+  width: 100px;
+  height: 4px;
+  background-color: #5352ed;
+  border-radius: 4px;
+  /* 覆盖第一个li */
+  position: absolute;
+  left: 10px;
+  bottom: -4px;
+  z-index: -1;
+  transition: all ease, 0.4s;
+}
+
+.slider3 {
+  width: 100px;
+  height: 4px;
+  background-color: #5352ed;
+  border-radius: 4px;
+  /* 覆盖第一个li */
+  position: absolute;
+  left: 10px;
+  top: -4px;
+  z-index: -1;
+  transition: all ease, 0.4s;
+}
+
+/* ~表A之后出现的节点B */
+li:nth-child(1):hover ~ [class^="slider"] {
+  left: 10px;
+}
+
+li:nth-child(2):hover ~ [class^="slider"] {
+  left: 128px;
+}
+
+li:nth-child(3):hover ~ [class^="slider"] {
+  left: 248px;
+}
+
+li:nth-child(4):hover ~ [class^="slider"] {
+  left: 368px;
+}
+
+li:nth-child(5):hover ~ [class^="slider"] {
+  left: 488px;
+}
