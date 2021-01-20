@@ -1,0 +1,34 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <example :ok="ok"></example>
+  <button @click="ok = !ok">toggle</button>
+</div>
+
+<script>
+  const Foo = {
+    render(h) {
+      return h("div", "foo");
+    },
+  };
+
+  const Bar = {
+    render(h) {
+      return h("div", "bar");
+    },
+  };
+
+  Vue.component("example", {
+    props: ["ok"],
+    render(h) {
+      // 根据ok的值进行动态组件渲染
+      // render函数除了渲染标签外，还可以动态渲染组件
+      return h(this.ok ? Foo : Bar);
+    },
+  });
+
+  new Vue({
+    el: "#app",
+    data: { ok: true },
+  });
+</script>

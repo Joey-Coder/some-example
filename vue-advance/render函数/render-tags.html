@@ -1,0 +1,52 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <h3>状态组件渲染</h3>
+  <example :tags="['h1', 'h2', 'h3']"></example>
+  <h3>函数组件渲染</h3>
+  <example1 :tags="['h1', 'h2', 'h3']"></example1>
+</div>
+
+<script>
+  // Vue.component 创建一个组件
+  Vue.component("example", {
+    functional: true,
+    props: {
+      tags: {
+        type: Array,
+        validator(arr) {
+          return !!arr.length;
+        },
+      },
+    },
+    render: (h, context) => {
+      const tags = context.props.tags;
+      console.log(context.data);
+      return h(
+        "div",
+        context.data,
+        tags.map((tag, index) => h(tag, index))
+      );
+    },
+  });
+  // 函数组件进行render
+  // 函数组件不可用实例换，只提供生成虚拟节点功能
+  Vue.component("example1", {
+    functional: true, // 声明是函数组件
+    // 因为函数组件没有this,可以通过render第二参数获取相关信息
+    render(h, { props: { tags } }) {
+      // context.slots() 通过slots方法获取子节点
+      // context.children 获取子组件
+      // context.parent 父组件，因为函数组件实挂载到根节点上，也就是<div id="app"></div>
+      // context.props 组件属性，这里得到tags属性
+      // return h('div', this.tags.map((tag, i) => h(tag, i)))
+      // 通过函数组件实现标签动态渲染
+      return h(
+        "div",
+        tags.map((tag, i) => h(tag, i))
+      );
+    },
+  });
+
+  new Vue({ el: "#app" });
+</script>
