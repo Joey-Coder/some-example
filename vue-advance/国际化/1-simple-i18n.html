@@ -1,0 +1,41 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <h1>{{ $t('welcome-message') }}</h1>
+  <button @click="changeLang('en')">English</button>
+  <button @click="changeLang('zh')">中文</button>
+  <button @click="changeLang('nl')">Dutch</button>
+</div>
+
+<script>
+  const i18n = {
+    install(Vue, locales) {
+      // install a $t method that looks up the message from correct locale
+      Vue.prototype.$t = function (key) {
+        const lang = this.lang;
+        return locales[lang][key];
+      };
+    },
+  };
+
+  Vue.use(
+    i18n,
+    /* option */ {
+      en: { "welcome-message": "hello" },
+      zh: { "welcome-message": "你好" },
+      nl: { "welcome-message": "Hallo" },
+    }
+  );
+
+  new Vue({
+    el: "#app",
+    data: {
+      lang: "en",
+    },
+    methods: {
+      changeLang(lang) {
+        this.lang = lang;
+      },
+    },
+  });
+</script>
