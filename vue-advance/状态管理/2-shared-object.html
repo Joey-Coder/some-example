@@ -1,0 +1,39 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <counter></counter>
+  <counter></counter>
+  <counter></counter>
+  <button @click="inc">increment</button>
+</div>
+
+<script>
+  // create a counter component (that doesn't take any props)
+  // all instances of it should share the same count state
+  // and a button that increments all counters at the same time
+
+  // 通过共享state来实现数据共享
+  const state = {
+    count: 0,
+  };
+
+  const Counter = {
+    data() {
+      return state; // same object, same reference
+    },
+    // data () {
+    //   return { count: 0 } // a fresh object
+    // },
+    template: `<div>{{ count }}</div>`,
+  };
+
+  new Vue({
+    el: "#app",
+    components: { Counter },
+    methods: {
+      inc() {
+        state.count++;
+      },
+    },
+  });
+</script>
