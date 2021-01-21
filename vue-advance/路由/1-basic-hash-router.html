@@ -1,0 +1,30 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <component :is="url"></component>
+  <a @click="routeTo('#foo')" href="#foo">foo</a>
+  <a @click="routeTo('#bar')" href="#bar">bar</a>
+</div>
+
+<script>
+  window.addEventListener("hashchange", () => {
+    app.url = window.location.hash.slice(1);
+  });
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      url: "foo",
+    },
+    components: {
+      foo: { template: `<div>foo</div>` },
+      bar: { template: `<div>bar</div>` },
+    },
+    methods: {
+      routeTo(route) {
+        window.location.hash = route;
+        // console.log(window.location.hash);
+      },
+    },
+  });
+</script>

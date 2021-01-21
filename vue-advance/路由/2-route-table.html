@@ -1,0 +1,48 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <component :is="matchedComponent"></component>
+  <a href="#foo">foo</a>
+  <a href="#bar">bar</a>
+</div>
+
+<script>
+  // '#/foo' -> Foo
+  // '#/bar' -> Bar
+  // '#/404' -> NotFound
+
+  const Foo = { template: `<div>foo</div>` };
+  const Bar = { template: `<div>bar</div>` };
+  const NotFound = { template: `<div>not found!</div>` };
+
+  // 创建路由表，key到组件的映射，方便渲染
+  const routeTable = {
+    "/foo": Foo,
+    "/bar": Bar,
+  };
+
+  window.addEventListener("hashchange", () => {
+    app.url = window.location.hash.slice(1);
+  });
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      url: window.location.hash.slice(1),
+    },
+    computed: {
+      matchedComponent() {
+        return routeTable["/" + this.url] || NotFound;
+      },
+    },
+    // 使用渲染方案
+    // render(h) {
+    //   return h("div", [
+    //     h(routeTable["/" + this.url] || NotFound),
+    //     h("a", { attrs: { href: "#foo" } }, "Go to Foo"),
+    //     " | ",
+    //     h("a", { attrs: { href: "#bar" } }, "Go to Bar"),
+    //   ]);
+    // },
+  });
+</script>
