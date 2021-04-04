@@ -18,6 +18,7 @@ Array.prototype.mySlice = function (start, end) {
   } else {
     start = 0;
   }
+  // 处理end
   if (end) {
     if (end < 10) {
       end = (end + ARRAY_LENGTH) % ARRAY_LENGTH;
