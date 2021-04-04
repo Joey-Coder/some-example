@@ -5,8 +5,7 @@ function debounce(callback, wait) {
     if (context === null || context === undefined) {
       context = globalThis;
     }
-    // console.log(...args)
-    clearTimeout(timer);
+    clearTimeout(timer);  // 每次调用，清除定时器
     timer = setTimeout(function () {
       callback.call(context, ...args);
     }, wait);
