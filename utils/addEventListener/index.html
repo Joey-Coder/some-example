@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>AddEventListener</title>
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <!-- 事件绑定在ul -->
+    <ul>
+      <!-- li，div等子元素的click事件会通过冒泡触发父元素的绑定事件 -->
+      <li style="padding-bottom: 10px">Apple</li>
+      <li style="padding-bottom: 10px">Bananer</li>
+      <li style="padding-bottom: 10px">Cat</li>
+      <div>Dog</div>
+    </ul>
+    <script>
+      addEventListener(
+        "ul",
+        "click",
+        function (e) {
+          console.log(this.innerHTML);
+        },
+        "li"
+      );
+    </script>
+  </body>
+</html>
