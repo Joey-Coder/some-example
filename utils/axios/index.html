@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axios</title>
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <script>
+      const BASE_URL = "http://httpbin.org";
+      //   axios({
+      //     url: "http://httpbin.org/post",
+      //     method: "post",
+      //     params: { name: "joey", age: 23 },
+      //     data: { test: "aaa" },
+      //   })
+      //     .then((res) => {
+      //       console.log(res);
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //     });
+      //  get方法
+      axios
+        .get(BASE_URL + "/get", { params: { name: "monica" } })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // post方法
+      axios
+        .post(BASE_URL + "/post", { data: { name: "monica" }, method: "POST" })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // put方法
+      axios
+        .put(BASE_URL + "/put", { data: { name: "monica" }, method: "PUT" })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // delete方法
+      axios
+        .delete(BASE_URL + "/delete", { data: { name: "monica" } })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    </script>
+  </body>
+</html>
