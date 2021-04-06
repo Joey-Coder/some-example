@@ -15,6 +15,7 @@ function deepCopy(arg, map = new Map()) {
     map.set(arg, result);
     // 对象或数组类型循环遍历
     for (let key in arg) {
+      // 递归调用
       result[key] = deepCopy(arg[key], map);
     }
     return result;
@@ -23,6 +24,4 @@ function deepCopy(arg, map = new Map()) {
   }
 }
 
-export default deepCopy
-
-
+export default deepCopy;
