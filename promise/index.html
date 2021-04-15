@@ -12,22 +12,54 @@
     <script>
       let p = new Promise((resolve, reject) => {
         setTimeout(() => {
-          // resolve("ok");
-          reject("fail");
+          resolve("ok");
+          // reject("fail");
         }, 2000);
       });
-      let result = p.then(
-        (value) => {
-          console.log("onResolved: " + value);
-          return "ok";
-        },
-        (reason) => {
-          console.log("onRejected: " + reason);
-          // throw 'ERR'
-          return "fail";
-        }
+      // then
+      // let result = p.then(
+      //   (value) => {
+      //     console.log("onResolved: " + value);
+      //     return "ok";
+      //   },
+      //   (reason) => {
+      //     console.log("onRejected: " + reason);
+      //     // throw 'ERR'
+      //     return "fail";
+      //   }
+      // );
+
+      // catch
+      // let result = p.catch((reason) => {
+      //   console.warn("catch");
+      //   return "fail";
+      // });
+
+      // 异常穿透
+      // let result = p
+      //   .then((value) => {
+      //     console.log(1);
+      //   })
+      //   .then((value) => {
+      //     console.log(2);
+      //   })
+      //   .then((value) => {
+      //     console.log(3);
+      //   })
+      //   .catch((reason) => {
+      //     console.log("finally catch");
+      //     // throw "reason";
+      //     return "reason"
+      //   });
+
+      // resolve方法
+      let result = Promise.resolve(
+        new Promise((resolve, reject) => {
+          resolve("ok");
+        })
       );
-      // console.log(p);
+
+      console.log(p);
       console.log(result);
     </script>
   </body>

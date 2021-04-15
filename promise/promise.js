@@ -82,12 +82,15 @@
           };
 
     return new Promise((resolve, reject) => {
+      // 封装调用resolve/reject的函数
       function handle(callback) {
         try {
           let result = callback(self.PromiseResult);
           if (result instanceof Promise) {
+            // onResolved/onRejected返回的是Promise对象
             result.then(resolve, reject);
           } else {
+            // onResolved/onRejecte返回的是undefined或是其他基本类型
             resolve(result);
           }
         } catch (err) {
@@ -120,13 +123,23 @@
    * 是then(null, onRejected)的语法糖
    * @param {function} onRejected
    */
-  Promise.prototype.catch = function (onRejected) {};
+  Promise.prototype.catch = function (onRejected) {
+    return this.then(undefined, onRejected);
+  };
 
   /**
    * 返回一个指定了成功的value的promise对象
    * @param {any} value
    */
-  Promise.resolve = function (value) {};
+  Promise.resolve = function (value) {
+    return new Promise((resolve, reject) => {
+      if (value instanceof Promise) {
+        value.then(resolve, reject);
+      } else {
+        resolve(value);
+      }
+    });
+  };
 
   /**
    * 返回一个指定了失败reason的promise对象
