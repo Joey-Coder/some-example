@@ -16,6 +16,7 @@
           // reject("fail");
         }, 2000);
       });
+
       // then
       // let result = p.then(
       //   (value) => {
@@ -52,12 +53,37 @@
       //     return "reason"
       //   });
 
-      // resolve方法
-      let result = Promise.resolve(
-        new Promise((resolve, reject) => {
-          resolve("ok");
-        })
-      );
+      // Promise.resolve方法
+      // let result = Promise.resolve(
+      //   new Promise((resolve, reject) => {
+      //     resolve("ok");
+      //   })
+      // );
+
+      // Promise.reject方法
+      // let result = Promise.reject(
+      //   "fail"
+      //   // new Promise((resolve, reject) => {
+      //   //   resolve("ok");
+      //   // })
+      // );
+
+      
+      let p1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("111");
+        }, 1000);
+      });
+      let p2 = Promise.resolve("222");
+      // let p2 = Promise.reject("fail");
+
+      let p3 = Promise.resolve("333");
+
+      // Promise.all方法
+      // let result = Promise.all([p1, p2, p3]);
+
+      // Promise.race方法
+      let result = Promise.race([p1, p2, p3]);
 
       console.log(p);
       console.log(result);

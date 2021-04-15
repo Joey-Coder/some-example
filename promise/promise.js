@@ -142,22 +142,59 @@
   };
 
   /**
-   * 返回一个指定了失败reason的promise对象
+   * 返回一个指定了失败reason的promise对象, PromiseState为rejected
    * @param {any} reason
    */
-  Promise.reject = function (reason) {};
+  Promise.reject = function (reason) {
+    return new Promise((resolve, reject) => {
+      reject(reason);
+    });
+  };
 
   /**
    * 执行全部promises
    * @param {Array} promises
    */
-  Promise.all = function (promises) {};
+  Promise.all = function (promises) {
+    return new Promise((resolve, reject) => {
+      let promisesLength = promises.length;
+      let results = new Array(promisesLength);
+      let count = 0;
+      for (let i = 0; i < promisesLength; i++) {
+        promises[i].then(
+          (value) => {
+            results[i] = value;
+            count++;
+            if (count === promisesLength) {
+              resolve(results);
+            }
+          },
+          (reason) => {
+            reject(reason);
+          }
+        );
+      }
+    });
+  };
 
   /**
    * 优先返回第一个执行promises
    * @param {Array} promises
    */
-  Promise.race = function (promises) {};
+  Promise.race = function (promises) {
+    return new Promise((resolve, reject) => {
+      for (let i = 0; i < promises.length; i++) {
+        promises[i].then(
+          (value) => {
+            resolve(value);
+          },
+          (reason) => {
+            reject(reason);
+          }
+        );
+      }
+    });
+  };
 
   // 暴露构造函数
   window.Promise = Promise;
