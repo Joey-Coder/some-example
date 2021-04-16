@@ -24,10 +24,8 @@ class Promise {
 
       // 异步调用所有待处理的onRejcted回调函数
       if (self.callbacks.length > 0) {
-        setTimeout(() => {
-          self.callbacks.forEach((obj) => {
-            obj.onResolved();
-          });
+        self.callbacks.forEach((obj) => {
+          obj.onResolved();
         });
       }
     }
@@ -45,10 +43,8 @@ class Promise {
 
       // 异步调用所有待处理的onRejected
       if (self.callbacks.length > 0) {
-        setTimeout(() => {
-          self.callbacks.forEach((obj) => {
-            obj.onRejected();
-          });
+        self.callbacks.forEach((obj) => {
+          obj.onRejected();
         });
       }
     }
@@ -84,7 +80,8 @@ class Promise {
     return new Promise((resolve, reject) => {
       // 封装调用resolve/reject的函数
       function handle(callback) {
-        setTimeout(() => {
+        //微任务
+        queueMicrotask(() => {
           try {
             let result = callback(self.PromiseResult);
             if (result instanceof Promise) {
