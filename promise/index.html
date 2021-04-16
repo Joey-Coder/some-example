@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>手写Promise</title>
-    <script src="./promise.js"></script>
+    <!-- <script src="./promise.js"></script> -->
+    <script src="./promise_class.js"></script>
   </head>
   <body>
     <h3>手写Promise</h3>
@@ -13,8 +14,10 @@
       let p = new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve("ok");
+          // console.log("1");
           // reject("fail");
-        }, 2000);
+          // }, 2000);
+        });
       });
 
       // then
@@ -29,6 +32,7 @@
       //     return "fail";
       //   }
       // );
+      // console.log("2");
 
       // catch
       // let result = p.catch((reason) => {
@@ -46,11 +50,12 @@
       //   })
       //   .then((value) => {
       //     console.log(3);
+      //     // throw "ERR";
       //   })
       //   .catch((reason) => {
       //     console.log("finally catch");
       //     // throw "reason";
-      //     return "reason"
+      //     return "reason";
       //   });
 
       // Promise.resolve方法
@@ -62,13 +67,12 @@
 
       // Promise.reject方法
       // let result = Promise.reject(
-      //   "fail"
-      //   // new Promise((resolve, reject) => {
-      //   //   resolve("ok");
-      //   // })
+      // "fail"
+      // new Promise((resolve, reject) => {
+      //   resolve("ok");
+      // })
       // );
 
-      
       let p1 = new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve("111");
@@ -82,7 +86,7 @@
       // Promise.all方法
       // let result = Promise.all([p1, p2, p3]);
 
-      // Promise.race方法
+      // // Promise.race方法
       let result = Promise.race([p1, p2, p3]);
 
       console.log(p);

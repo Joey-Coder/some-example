@@ -1,9 +1,10 @@
-(function (window) {
+// class版本
+class Promise {
   /**
    * Promise 构造函数
    * @param {function} excutor 内部执行的构造函数
    */
-  function Promise(excutor) {
+  constructor(excutor) {
     const self = this;
     self.PromiseState = "pending"; // 状态值，有fulfilled和rejected
     self.PromiseResult = undefined;
@@ -68,7 +69,7 @@
    * @param {function} onRejected
    * @returns {Promise}
    */
-  Promise.prototype.then = function (onResolved, onRejected) {
+  then(onResolved, onRejected) {
     const self = this;
     // 如果onResolved/onRejected不是函数，为它指定一个默认函数
     onResolved =
@@ -98,9 +99,8 @@
           }
         });
       }
-      // 处理resolve
       if (self.PromiseState === "fulfilled") {
-        // setTimeout(()=>{})
+        // 处理resolve
         handle(onResolved);
       } else if (self.PromiseState === "rejected") {
         // 处理reject和throw
@@ -118,22 +118,22 @@
         });
       }
     });
-  };
+  }
 
   /**
    * 为promise指定失败的回调函数
    * 是then(null, onRejected)的语法糖
    * @param {function} onRejected
    */
-  Promise.prototype.catch = function (onRejected) {
+  catch(onRejected) {
     return this.then(undefined, onRejected);
-  };
+  }
 
   /**
    * 返回一个指定了成功的value的promise对象
    * @param {any} value
    */
-  Promise.resolve = function (value) {
+  static resolve(value) {
     return new Promise((resolve, reject) => {
       if (value instanceof Promise) {
         value.then(resolve, reject);
@@ -141,23 +141,23 @@
         resolve(value);
       }
     });
-  };
+  }
 
   /**
    * 返回一个指定了失败reason的promise对象, PromiseState为rejected
    * @param {any} reason
    */
-  Promise.reject = function (reason) {
+  static reject(reason) {
     return new Promise((resolve, reject) => {
       reject(reason);
     });
-  };
+  }
 
   /**
    * 执行全部promises
    * @param {Array} promises
    */
-  Promise.all = function (promises) {
+  static all(promises) {
     return new Promise((resolve, reject) => {
       let promisesLength = promises.length;
       let results = new Array(promisesLength);
@@ -177,13 +177,13 @@
         );
       }
     });
-  };
+  }
 
   /**
    * 优先返回第一个执行promises
    * @param {Array} promises
    */
-  Promise.race = function (promises) {
+  static race(promises) {
     return new Promise((resolve, reject) => {
       for (let i = 0; i < promises.length; i++) {
         promises[i].then(
@@ -196,8 +196,5 @@
         );
       }
     });
-  };
-
-  // 暴露构造函数
-  window.Promise = Promise;
-})(window);
+  }
+}
