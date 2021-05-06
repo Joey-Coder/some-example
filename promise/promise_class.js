@@ -7,8 +7,8 @@ class Promise {
   constructor(excutor) {
     const self = this;
     self.PromiseState = "pending"; // 状态值，有fulfilled和rejected
-    self.PromiseResult = undefined;
-    self.callbacks = [];
+    self.PromiseResult = undefined; // promise的执行结果
+    self.callbacks = []; // 状态为待定时，收集的onResolve和onReject函数
 
     /**
      * 定义Promise中的resolve方法，在excutor中调用
