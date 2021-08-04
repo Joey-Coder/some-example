@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>全屏布局-flex实现</title>
+    <style>
+      .fullscreen-layout {
+        display: flex;
+        flex-direction: column;
+        width: 80vw;
+        height: 80vh;
+      }
+      header {
+        height: 50px;
+        background-color: tomato;
+      }
+      footer {
+        height: 50px;
+        background-color: violet;
+      }
+      main {
+        flex: 1;
+        background-color: lemonchiffon;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fullscreen-layout">
+      <header>header</header>
+      <main>main</main>
+      <footer>footer</footer>
+    </div>
+  </body>
+</html>

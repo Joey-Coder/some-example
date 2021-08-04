@@ -54,6 +54,11 @@
 
     手写promise
 
+### layout
+
+    常用布局
+
 ## 鸣谢
 
 峰华前端工程师
+JowayYoung
